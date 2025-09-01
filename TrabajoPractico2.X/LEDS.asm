@@ -48,41 +48,29 @@ LOOP_B
 	CLRWDT
 	GOTO	TRE0
 	    
-	    
-LOOP_RL	    
-	    BSF	    PORTB,RB0	    ;RB0 en 1
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB0	    ;RB0 en 0
-	    BSF	    PORTB,RB1	    ;RB1 en 1
-	    CLRWDT
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB1	    ;RB0 en 0
-	    BSF	    PORTB,RB2	    ;RB1 en 1
-	    CLRWDT
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB2	    ;RB0 en 0
-	    BSF	    PORTB,RB3	    ;RB1 en 1
-	    CLRWDT
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB3	    ;RB0 en 0
-	    BSF	    PORTB,RB4	    ;RB1 en 1
-	    CLRWDT
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB4	    ;RB0 en 0
-	    BSF	    PORTB,RB5	    ;RB1 en 1
-	    CLRWDT
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB5	    ;RB0 en 0
-	    BSF	    PORTB,RB6	    ;RB1 en 1
-	    CLRWDT
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB6	    ;RB0 en 0
-	    BSF	    PORTB,RB7	    ;RB1 en 1
-	    CLRWDT
-	    CALL    DELAY_200ms
-	    BCF	    PORTB,RB7	    ;RB7 en 0
-	    CLRWDT
-	    GOTO    TRE0
+
+	
+; --- LOOP_RL con rotaciones y chequeos ---
+LOOP_RL
+    ; Inicializar PORTB con 00000001 (RB0 en 1)
+    MOVLW   .1
+    MOVWF   PORTB
+
+RL_LOOP
+    CALL    DELAY_200ms     ; espera 200ms
+    CLRWDT
+    BTFSC   PORTE,0         ; si RE0 = 0 sigue
+    GOTO    TRE0            ; si RE0 = 1, salir al inicio
+
+    RLF     PORTB,F         ; rota a la izquierda PORTB
+    BTFSS   STATUS,C        ; si el carry está en 1 significa que pasó de RB7
+    GOTO    RL_LOOP
+    
+    ; si terminó en carry (ya pasó RB7) limpiar y volver a empezar
+    CLRF    PORTB
+    GOTO    LOOP_RL
+
+    
 	    
 	    
 ;*** Subrutinas ***	    
