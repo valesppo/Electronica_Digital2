@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=TrabajoPractico.X
+PROJECTNAME=TrabajoPractico2.X
 
 # Active Configuration
 DEFAULTCONF=default
