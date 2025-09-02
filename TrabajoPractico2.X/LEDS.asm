@@ -2,6 +2,8 @@
 LIST P=16F887			
 #include "p16f887.inc"	
 
+;**** Configuración General ****	
+	__CONFIG _CONFIG1, _XT_OSC & _WDTE_OFF & _MCLRE_ON & _LVP_OFF	    
 ;**** Definición de Variables ****
 	    CBLOCK  0X20
 		    DELAY1 
@@ -21,7 +23,6 @@ LIST P=16F887
 INICIO 	    ORG	    0x05
 ;*** Configuración de Puertos ***
 INICIO	    
-	    CLRWDT
 	    BSF	    STATUS,RP0
 	    BSF	    STATUS,RP1	    ;Banco 3
 	    CLRF    ANSELH	    ;PORTB digital
@@ -34,7 +35,6 @@ INICIO
 
 TRE0
 	    CALL DELAY_RB
-	    CLRWDT
 	    BTFSC   PORTE,0
 	    GOTO    LOOP_B
 	    GOTO    LOOP_RL
@@ -42,36 +42,54 @@ LOOP_B
 	MOVLW	.255
 	MOVWF	PORTB
 	CALL	DELAY_1s
-	CLRWDT
 	CLRF	PORTB
 	CALL	DELAY_1s
-	CLRWDT
 	GOTO	TRE0
 	    
 
-	
-; --- LOOP_RL con rotaciones y chequeos ---
-LOOP_RL
-    ; Inicializar PORTB con 00000001 (RB0 en 1)
-    MOVLW   .1
-    MOVWF   PORTB
-
-RL_LOOP
-    CALL    DELAY_200ms     ; espera 200ms
-    CLRWDT
-    BTFSC   PORTE,0         ; si RE0 = 0 sigue
-    GOTO    TRE0            ; si RE0 = 1, salir al inicio
-
-    RLF     PORTB,F         ; rota a la izquierda PORTB
-    BTFSS   STATUS,C        ; si el carry está en 1 significa que pasó de RB7
-    GOTO    RL_LOOP
-    
-    ; si terminó en carry (ya pasó RB7) limpiar y volver a empezar
-    CLRF    PORTB
-    GOTO    LOOP_RL
-
-    
-	    
+LOOP_RL	    
+	    BSF	    PORTB,RB0	    ;RB0 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB0	    ;RB0 en 0
+	    BSF	    PORTB,RB1	    ;RB1 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB1	    ;RB1 en 0
+	    BSF	    PORTB,RB2	    ;RB2 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB2	    ;RB2 en 0
+	    BSF	    PORTB,RB3	    ;RB3 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB3	    ;RB3 en 0
+	    BSF	    PORTB,RB4	    ;RB4 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB4	    ;RB4 en 0
+	    BSF	    PORTB,RB5	    ;RB5 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB5	    ;RB5 en 0
+	    BSF	    PORTB,RB6	    ;RB6 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB6	    ;RB6 en 0
+	    BSF	    PORTB,RB7	    ;RB7 en 1
+	    CALL    DELAY_200ms
+	    BTFSC   PORTE,0
+	    GOTO    TRE0
+	    BCF	    PORTB,RB7	    ;RB7 en 0
+	    CALL    DELAY_200ms
+	    GOTO    TRE0
 	    
 ;*** Subrutinas ***	    
 ; Subrutina de Retardo con 3 Bucles Anidados para 1s 
