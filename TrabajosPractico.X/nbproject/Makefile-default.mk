@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=
+SOURCEFILES_QUOTED_IF_SPACED=Trabajo3.asm
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=
-POSSIBLE_DEPFILES=
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Trabajo3.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/Trabajo3.o.d
 
 # Object Files
-OBJECTFILES=
+OBJECTFILES=${OBJECTDIR}/Trabajo3.o
 
 # Source Files
-SOURCEFILES=
+SOURCEFILES=Trabajo3.asm
 
 
 CFLAGS=
@@ -94,7 +94,23 @@ MP_LINKER_DEBUG_OPTION=
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/Trabajo3.o: Trabajo3.asm  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Trabajo3.o.d 
+	@${RM} ${OBJECTDIR}/Trabajo3.o 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/Trabajo3.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_SIMULATOR=1 -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/Trabajo3.lst\" -e\"${OBJECTDIR}/Trabajo3.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/Trabajo3.o\" \"Trabajo3.asm\" 
+	@${DEP_GEN} -d "${OBJECTDIR}/Trabajo3.o"
+	@${FIXDEPS} "${OBJECTDIR}/Trabajo3.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
+	
 else
+${OBJECTDIR}/Trabajo3.o: Trabajo3.asm  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Trabajo3.o.d 
+	@${RM} ${OBJECTDIR}/Trabajo3.o 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/Trabajo3.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/Trabajo3.lst\" -e\"${OBJECTDIR}/Trabajo3.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/Trabajo3.o\" \"Trabajo3.asm\" 
+	@${DEP_GEN} -d "${OBJECTDIR}/Trabajo3.o"
+	@${FIXDEPS} "${OBJECTDIR}/Trabajo3.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
+	
 endif
 
 # ------------------------------------------------------------------------------------

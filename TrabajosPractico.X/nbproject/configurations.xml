@@ -12,8 +12,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>LEDS.asm</itemPath>
-      <itemPath>Display1-7.asm</itemPath>
+      <itemPath>Trabajo3.asm</itemPath>
+      <itemPath>Trabajo1.asm</itemPath>
+      <itemPath>Trabajo2.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -61,16 +62,6 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
-      <item path="Display1-7.asm" ex="true" overriding="false">
-      </item>
-      <item path="LEDS.asm" ex="true" overriding="false">
-        <MPASMWIN-AS>
-        </MPASMWIN-AS>
-        <MPASMWIN-LD>
-        </MPASMWIN-LD>
-        <mpasmsuite>
-        </mpasmsuite>
-      </item>
       <MPASMWIN-AS>
         <property key="cross.reference.file" value=""/>
         <property key="default.radix" value="HEX"/>
@@ -487,6 +478,22 @@
                   value=""/>
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Simulator>
+      <item path="Trabajo1.asm" ex="true" overriding="false">
+        <MPASMWIN-AS>
+        </MPASMWIN-AS>
+        <MPASMWIN-LD>
+        </MPASMWIN-LD>
+        <mpasmsuite>
+        </mpasmsuite>
+      </item>
+      <item path="Trabajo2.asm" ex="true" overriding="false">
+        <MPASMWIN-AS>
+        </MPASMWIN-AS>
+        <MPASMWIN-LD>
+        </MPASMWIN-LD>
+        <mpasmsuite>
+        </mpasmsuite>
+      </item>
       <mpasmsuite>
         <property key="absolute-mode" value="false"/>
         <property key="eeprom-width" value="8"/>
